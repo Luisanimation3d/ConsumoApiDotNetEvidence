@@ -1,0 +1,47 @@
+﻿@model List<Producto>
+@using ApiRestEviencia.Models
+
+@{
+    ViewData["Title"] = "Product List";
+}
+
+<h1 style="margin: 4rem 0; text-align: center"><span style="color: #98ca3f">Platzi</span> Fake Api</h1>
+
+@if (Model != null && Model.Count > 0)
+{
+    <table style="border-collapse: collapse; width: 100%; box-shadow: 0 0 60px #98ca3f; border-radius: 20px;">
+        <thead>
+            <tr>
+                <th style="color: white; border: 1px solid #98ca3f; background-color:#98ca3f; padding: 8px;">ID</th>
+                <th style="color: white; border: 1px solid #98ca3f; background-color:#98ca3f; padding: 8px;">TITLE</th>
+                <th style="color: white; border: 1px solid #98ca3f; background-color:#98ca3f; padding: 8px;">PRICE</th>
+                <th style="color: white; border: 1px solid #98ca3f; background-color:#98ca3f; padding: 8px;">CATEGORY</th>
+                <th style="color: white; border: 1px solid #98ca3f; background-color:#98ca3f; padding: 8px;">DESCRIPTION</th>
+                <th style="color: white; border: 1px solid #98ca3f; background-color:#98ca3f; padding: 8px;">IMAGES</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var product in Model)
+            {
+                <tr>
+                    <td style="border: 1px solid #98ca3f; padding: 8px; color: #fff">@product.id</td>
+                    <td style="border: 1px solid #98ca3f; padding: 8px; color: #fff">@product.title</td>
+                    <td style="border: 1px solid #98ca3f; padding: 8px; color: #fff">@product.price</td>
+                    <td style="border: 1px solid #98ca3f; padding: 8px; color: #fff">@product.category.name</td>
+                    <td style="border: 1px solid #98ca3f; padding: 8px; color: #fff">@product.description</td>
+                    <td style="border: 1px solid #98ca3f; padding: 8px; color: #fff">
+                        @foreach(var productImage in product.images)
+                        {
+                            <img src="@productImage" style="width: 100px; height: 100px;" />
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+else
+{
+    <p>No products found.</p>
+}
